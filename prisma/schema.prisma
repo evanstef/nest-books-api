@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Test {
+  id      Int @id @default(autoincrement())
+  name    String
+
+  @@map("test")
+}
+
+model Books {
+  id              Int @id @default(autoincrement())
+  title           String @db.VarChar(100)
+  slug            String @db.VarChar(100) @unique
+  
+  publisher       String @db.VarChar(100)
+  year            Int
+  total_pages     Int
+  cover_path      String?
+  from_country    String?
+  release_date    DateTime
+  score           Int @default(0)
+  summary         String @db.Text
+
+  type            TypeOnBooks[]
+  genre           GenresOnBooks[] 
+  author          AuthorsOnBooks[]
+
+  @@map("books")
+}
+
+model Author {
+  id      Int @id @default(autoincrement())
+  name    String? @db.VarChar(100)
+  slug    String? @db.VarChar(100) @unique
+  avatar  String? @db.VarChar(200) 
+
+  books   AuthorsOnBooks[]
+
+  @@map("authors")
+}
+
+model Genre {
+  id      Int @id @default(autoincrement())
+  name    String @db.VarChar(100) 
+  slug    String @db.VarChar(100) @unique
+
+  books   GenresOnBooks[]
+
+  @@map("genres")
+}
+
+model Type {
+  id      Int @id @default(autoincrement())
+  name    String? @db.VarChar(100)
+  slug    String? @db.VarChar(100) @unique
+
+  books   TypeOnBooks[]
+
+  @@map("types")
+}
+
+model AuthorsOnBooks {
+  bookId   Int
+  authorId Int
+  book     Books   @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  author   Author  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@id([bookId, authorId])
+  @@map("authors_on_books")
+}
+
+model GenresOnBooks {
+  bookId  Int
+  genreId Int
+  book    Books  @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  genre   Genre  @relation(fields: [genreId], references: [id], onDelete: Cascade)
+
+  @@id([bookId, genreId])
+  @@map("genres_on_books")
+}
+
+model TypeOnBooks {
+  bookId  Int
+  typeId  Int
+  book    Books  @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  type    Type   @relation(fields: [typeId], references: [id], onDelete: Cascade)
+
+  @@id([bookId, typeId])
+  @@map("types_on_books")
+}
