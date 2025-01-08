@@ -1,1 +1,2 @@
-export default function handler(req: any, res: any): Promise<void>;
+declare const _default: Promise<any>;
+export default _default;

@@ -1,14 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-export default async function handler(req: any, res: any): Promise<void> {
-  // Buat instance aplikasi NestJS
+async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  // Inisialisasi aplikasi (tanpa global prefix)
+  app.enableCors(); // Aktifkan CORS jika diperlukan
   await app.init();
-
-  // Tangkap request dan response untuk serverless environment di Vercel
+  
+  // Tambahkan kode ini untuk Vercel
   const server = app.getHttpAdapter().getInstance();
-  server(req, res);
+  return server;
 }
+
+export default bootstrap();
