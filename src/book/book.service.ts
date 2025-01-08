@@ -3,7 +3,7 @@ import { PrismaService } from "src/common/prisma.service";
 import { ValidationService } from "src/common/validation.service";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
 import { add, Logger } from "winston";
-import { AddNewBookRequest, BookDetailResponse, BookResponse } from "src/model/book.model";
+import { AddNewBookRequest, BookDetailResponse, BookResponse } from "../model/book.model";
 import { BookValidation } from "./book.validation";
 
 
