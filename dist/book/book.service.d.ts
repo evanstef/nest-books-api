@@ -1,5 +1,5 @@
-import { PrismaService } from "src/common/prisma.service";
-import { ValidationService } from "src/common/validation.service";
+import { PrismaService } from "../common/prisma.service";
+import { ValidationService } from "../common/validation.service";
 import { Logger } from "winston";
 import { AddNewBookRequest, BookDetailResponse, BookResponse } from "../model/book.model";
 export declare class BookService {

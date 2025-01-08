@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, Param } from "@nestjs/common";
 import { AuthorsService } from "./authors.service";
-import { WebModelResponse } from "src/model/web.model";
-import { AuthorResponse } from "src/model/authors.model";
+import { WebModelResponse } from "../model/web.model";
+import { AuthorResponse } from "../model/authors.model";
 
 @Controller('/api/authors')
 export class AuthorsController {

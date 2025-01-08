@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpCode, Logger, Param, ParseIntPipe, Post, Query, ValidationPipe } from "@nestjs/common";
-import { AddNewBookRequest, BookDetailResponse, BookResponse, GetPopularBooks } from "src/model/book.model";
-import { WebModelResponse } from "src/model/web.model";
+import { AddNewBookRequest, BookDetailResponse, BookResponse, GetPopularBooks } from "../model/book.model";
+import { WebModelResponse } from "../model/web.model";
 import { BookService } from "./book.service";
 
 @Controller('/api/book')

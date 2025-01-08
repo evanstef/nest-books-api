@@ -1,5 +1,5 @@
-import { AddNewBookRequest, BookDetailResponse, BookResponse } from "src/model/book.model";
-import { WebModelResponse } from "src/model/web.model";
+import { AddNewBookRequest, BookDetailResponse, BookResponse } from "../model/book.model";
+import { WebModelResponse } from "../model/web.model";
 import { BookService } from "./book.service";
 export declare class BookController {
     private bookService;
