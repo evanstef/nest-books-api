@@ -29,7 +29,7 @@ export class AuthorsService {
                 id : item.id,
                 name : item.name,
                 slug : item.slug,
-                avatar : item.avatar ? item.avatar : null,
+                avatar : !item.avatar || item.avatar === "NULL" ? null : item.avatar,
                 total_books : item._count.books,
             }
         })
@@ -85,7 +85,7 @@ export class AuthorsService {
             id : author.id,
             name : author.name,
             slug : author.slug,
-            avatar : author.avatar ? author.avatar : null,
+            avatar : !author.avatar || author.avatar === "NULL" ? null : author.avatar,
             total_books : author._count.books,
             books : author.books.map((item) => {
                 return {
