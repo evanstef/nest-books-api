@@ -1,4 +1,4 @@
-## Hello friends, this is an API that provides data on books such as novels, comics, etc. With over 500+ book titles available i took the data from the website it's called goodreads.com, this is a brief documentation on how to use it. Happy coding, self-taught enthusiasts!
+## Hello friends, this is an API that provides data on books such as novels, comics, etc it's like API in website goodreads.com but you don't need authorize or log in first to Get API key so just hit endpoint and you will get a list of books. With over 500+ book titles available i took the data from the website it's called goodreads.com, this is a brief documentation on how to use it. Happy coding, self-taught enthusiasts!
 
 ## All Endpoint
 1. GET https://books-goodreads-api.vercel.app/api/book
