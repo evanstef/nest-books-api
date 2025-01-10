@@ -231,6 +231,7 @@ Status : 500
 Endpoint : https://books-goodreads-api.vercel.app/api/book/type/:type \
 Method : GET \
 Size : 20 Books \ 
+Note : The book will be sorted by latest release date. \
 List Of Types :
 - novel
 - comic

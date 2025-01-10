@@ -347,6 +347,11 @@ export class BookService {
                 typeId : typeExists.id
             },
             take : 20,
+            orderBy : {
+              book : {
+                release_date : 'desc'
+              }
+            },
             include : {
                 book : {
                     include : {
