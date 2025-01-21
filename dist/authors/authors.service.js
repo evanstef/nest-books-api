@@ -35,7 +35,7 @@ let AuthorsService = class AuthorsService {
                 id: item.id,
                 name: item.name,
                 slug: item.slug,
-                avatar: item.avatar ? item.avatar : null,
+                avatar: !item.avatar || item.avatar === "NULL" ? null : item.avatar,
                 total_books: item._count.books,
             };
         });
@@ -83,7 +83,7 @@ let AuthorsService = class AuthorsService {
             id: author.id,
             name: author.name,
             slug: author.slug,
-            avatar: author.avatar ? author.avatar : null,
+            avatar: !author.avatar || author.avatar === "NULL" ? null : author.avatar,
             total_books: author._count.books,
             books: author.books.map((item) => {
                 return {
@@ -93,8 +93,9 @@ let AuthorsService = class AuthorsService {
                     cover_path: item.book.cover_path ? item.book.cover_path : null,
                     summary: item.book.summary ? item.book.summary : null,
                     score: item.book.score,
+                    rating: item.book.rating,
                     type: item.book.type[0]?.type.name,
-                    release_date: item.book.release_date.toISOString().substring(0, 10),
+                    first_release_date: item.book.first_release_date.toISOString().substring(0, 10),
                     genres: item.book.genre.map((genre) => genre.genre.name),
                 };
             })

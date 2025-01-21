@@ -32,6 +32,7 @@ Status : 200 OK
           "cover_path": "https://images.gr-assets.com/books/1455000000m/84604.jpg",
           "summary": "Summary example",
           "score": 189,
+          "rating": 4.5,
           "type": "Novel",
           "release_date": "2021-04-20",
           "genres": [
@@ -76,6 +77,7 @@ Status : 200 OK
           "cover_path": "https://images.gr-assets.com/books/1455000000m/84604.jpg",
           "summary": "Summary example",
           "score": 111111,
+          "rating": 4.5,
           "type": "Novel",
           "release_date": "2021-04-20",
           "genres": [
@@ -97,36 +99,92 @@ Status : 500
 }
 ```
 
-## 3. GET https://books-goodreads-api.vercel.app/api/book/?genres={genre}
+## 3. GET https://books-goodreads-api.vercel.app/api/book/?genres={slug:genre}
 
 Endpoint : https://books-goodreads-api.vercel.app/api/book/?genres={genre} \
 Method : GET \
 Size : 20 Books 
 
 List Of Genres : 
-- fiction 
-- historical 
-- romance 
-- education 
-- adventure 
-- classics 
-- comedy 
-- contemporary 
-- crime 
-- religion 
-- drama 
-- fantasy 
-- politics 
+- fiction
+- historical-fiction
+- novels
+- indonesian-literature
+- classics
+- literature
+- asia
+- childrens
+- education
+- young-adult
+- romance
+- historical
+- islam
+- religion
+- inspirational
+- love
 - family
+- magical-realism
+- drama
+- adventure
 - action
 - thriller
-- science
-- psychology
-- spirituality
-- literature
-- horror
+- crime
+- contemporary
+- fantasy
+- science-fiction
+- slice-of-life
+- philosophy
+- parenting
 - humor
+- travel
+- mystery
+- literary-fiction
+- politics
+- adult
+- unfinished
+- roman
+- comedy
+- chick-lit
+- feminism
+- queer
+- psychology
+- poetry
+- cultural
+- spirituality
+- banned-books
+- contemporary-romance
+- film
+- high-school
+- asian-literature
+- true-story
+- classic-literature
+- conspiracy-theories
+- detective
+- horror
+- mystery-thriller
+- short-stories
+- epic
+- teen
 - anthologies
+- collections
+- audiobook
+- science-fiction-fantasy
+- music
+- womens
+- japanese-literature
+- dark-fantasy
+- history
+- mira
+- novella
+- japan
+- christian
+- middle-grade
+- dark
+- speculative-fiction
+- sports
+- time-travel
+- angels
+
 
 ### Response if success
 Endpoint Example = https://books-goodreads-api.vercel.app/api/book/?genres=drama \
@@ -143,6 +201,7 @@ Status : 200 OK
           "cover_path": "https://images.gr-assets.com/books/1455000000m/84604.jpg",
           "summary": "Summary example",
           "score": 189,
+          "rating": 4.5,
           "type": "Novel",
           "release_date": "2021-04-20",
           "genres": [
@@ -192,6 +251,7 @@ Status : 200 OK
         "year": 2010,
         "summary": "Summary example",
         "score": 189,
+        "rating": 4.5,
         "total_pages": 312,
         "from_country": "Indonesia",
         "type": "Novel",
@@ -234,7 +294,6 @@ Size : 20 Books \
 Note : The book will be sorted by latest release date. \
 List Of Types :
 - novel
-- comic
 
 ### Response if success
 Status : 200 OK
@@ -250,6 +309,7 @@ Status : 200 OK
           "cover_path": "https://images.gr-assets.com/books/1455000000m/84604.jpg",
           "summary": "Summary example",
           "score": 189,
+          "rating": 4.5,
           "type": "Novel",
           "release_date": "2021-04-20",
           "genres": [
@@ -352,6 +412,7 @@ Status : 200 OK
                 "cover_path": "https://images-example.com/123123.jpg",
                 "summary": "Summary example",
                 "score": 645,
+                "rating": 4.5,
                 "type": "Novel",
                 "release_date": "2012-02-02",
                 "genres": [
@@ -368,6 +429,7 @@ Status : 200 OK
                 "cover_path": "https://images-example.com/123123.jpg",
                 "summary": "Summary example",
                 "score": 377,
+                "rating": 4.5,
                 "type": "Novel",
                 "release_date": "2007-07-01",
                 "genres": [

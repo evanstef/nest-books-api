@@ -15,6 +15,7 @@ let AppController = class AppController {
     getHello() {
         return {
             authors: 'Evan Stefanus Candra',
+            API_documentation: 'https://github.com/evanstef/nest-books-api',
             enpoint: {
                 books: {
                     recently: '/api/book',

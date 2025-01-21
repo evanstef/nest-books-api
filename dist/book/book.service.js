@@ -37,7 +37,7 @@ let BookService = class BookService {
         if (bookExists) {
             throw new common_1.HttpException('Book already exists', 400);
         }
-        const releaseDate = new Date(addBookRequest.release_date);
+        const releaseDate = new Date(addBookRequest.first_release_date);
         const newBook = await this.prismaService.books.create({
             data: {
                 title: addBookRequest.title,
@@ -49,7 +49,8 @@ let BookService = class BookService {
                 score: addBookRequest.score,
                 from_country: addBookRequest.from_country,
                 summary: addBookRequest.summary,
-                release_date: releaseDate,
+                rating: addBookRequest.rating,
+                first_release_date: releaseDate,
             }
         });
         let author;
@@ -123,7 +124,7 @@ let BookService = class BookService {
                 },
             });
         }
-        const formattedReleaseDate = newBook.release_date.toISOString().substring(0, 10);
+        const formattedReleaseDate = newBook.first_release_date.toISOString().substring(0, 10);
         return {
             id: newBook.id,
             title: newBook.title,
@@ -132,15 +133,16 @@ let BookService = class BookService {
             cover_path: newBook.cover_path,
             summary: newBook.summary,
             score: newBook.score,
+            rating: newBook.rating,
             type: addBookRequest.type === '' ? 'Unknown' : type.name,
-            release_date: formattedReleaseDate,
+            first_release_date: formattedReleaseDate,
             genres: genreNames,
         };
     }
     async getAllBooks() {
         const books = await this.prismaService.books.findMany({
             orderBy: {
-                release_date: 'desc'
+                first_release_date: 'desc'
             },
             take: 20,
             include: {
@@ -170,8 +172,9 @@ let BookService = class BookService {
                 cover_path: book.cover_path,
                 summary: book.summary,
                 score: book.score,
+                rating: book.rating,
                 type: book.type[0]?.type.name || 'Unknown',
-                release_date: book.release_date.toISOString().substring(0, 10),
+                first_release_date: book.first_release_date.toISOString().substring(0, 10),
                 genres: book.genre.map((item) => item.genre.name),
             };
         });
@@ -200,7 +203,7 @@ let BookService = class BookService {
         if (!book) {
             throw new common_1.HttpException('Book not found', 404);
         }
-        const formattedReleaseDate = book.release_date.toISOString().substring(0, 10);
+        const formattedReleaseDate = book.first_release_date.toISOString().substring(0, 10);
         return {
             title: book.title,
             slug: book.slug,
@@ -210,10 +213,11 @@ let BookService = class BookService {
             year: book.year,
             summary: book.summary,
             score: book.score,
+            rating: book.rating,
             total_pages: book.total_pages,
             from_country: book.from_country,
             type: book.type[0]?.type.name || 'Unknown',
-            release_date: formattedReleaseDate,
+            first_release_date: formattedReleaseDate,
             genres: book.genre.map((item) => item.genre.name),
         };
     }
@@ -261,8 +265,9 @@ let BookService = class BookService {
                 cover_path: book.cover_path,
                 summary: book.summary,
                 score: book.score,
+                rating: book.rating,
                 type: book.type[0]?.type.name || 'Unknown',
-                release_date: book.release_date.toISOString().substring(0, 10),
+                first_release_date: book.first_release_date.toISOString().substring(0, 10),
                 genres: book.genre.map((g) => g.genre.name),
             };
         });
@@ -288,6 +293,11 @@ let BookService = class BookService {
                 typeId: typeExists.id
             },
             take: 20,
+            orderBy: {
+                book: {
+                    first_release_date: 'desc'
+                }
+            },
             include: {
                 book: {
                     include: {
@@ -320,8 +330,9 @@ let BookService = class BookService {
                 cover_path: book.cover_path,
                 summary: book.summary,
                 score: book.score,
+                rating: book.rating,
                 type: book.type[0]?.type.name || 'Unknown',
-                release_date: book.release_date.toISOString().substring(0, 10),
+                first_release_date: book.first_release_date.toISOString().substring(0, 10),
                 genres: book.genre.map((g) => g.genre.name),
             };
         });
@@ -359,8 +370,9 @@ let BookService = class BookService {
                 cover_path: item.cover_path,
                 summary: item.summary,
                 score: item.score,
+                rating: item.rating,
                 type: item.type[0]?.type.name || 'Unknown',
-                release_date: item.release_date.toISOString().substring(0, 10),
+                first_release_date: item.first_release_date.toISOString().substring(0, 10),
                 genres: item.genre.map((g) => g.genre.name),
             };
         });

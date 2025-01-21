@@ -35,7 +35,7 @@ export class BookService {
         }
 
         // ubah string release_date menjadi date
-        const releaseDate = new Date(addBookRequest.release_date);
+        const releaseDate = new Date(addBookRequest.first_release_date);
 
         // Simpan buku ke database
         const newBook = await this.prismaService.books.create({
@@ -49,7 +49,8 @@ export class BookService {
                     score : addBookRequest.score,
                     from_country: addBookRequest.from_country,
                     summary: addBookRequest.summary,
-                    release_date: releaseDate,
+                    rating : addBookRequest.rating,
+                    first_release_date: releaseDate,
                 }
         
               });
@@ -153,7 +154,7 @@ export class BookService {
         }
 
         // ubah release_date dalam database menjadi string
-        const formattedReleaseDate = newBook.release_date.toISOString().substring(0, 10);
+        const formattedReleaseDate = newBook.first_release_date.toISOString().substring(0, 10);
 
         return {
             id : newBook.id,
@@ -163,8 +164,9 @@ export class BookService {
             cover_path : newBook.cover_path,
             summary : newBook.summary,
             score : newBook.score,
+            rating : newBook.rating,
             type : addBookRequest.type === '' ? 'Unknown' : type.name,
-            release_date : formattedReleaseDate,
+            first_release_date : formattedReleaseDate,
             genres : genreNames,
         }
     }
@@ -174,7 +176,7 @@ export class BookService {
         // mengambil semua buku yang di data base namun diurutkan dari tanggal release terbaru
         const books = await this.prismaService.books.findMany({
             orderBy : {
-                release_date : 'desc'
+                first_release_date : 'desc'
             },
             take : 20,
             include: {
@@ -207,8 +209,9 @@ export class BookService {
                 cover_path : book.cover_path,
                 summary : book.summary,
                 score : book.score,
+                rating : book.rating,
                 type : book.type[0]?.type.name || 'Unknown',
-                release_date : book.release_date.toISOString().substring(0, 10), // ubah release_date dalam database menjadi string
+                first_release_date : book.first_release_date.toISOString().substring(0, 10), // ubah release_date dalam database menjadi string
                 genres : book.genre.map((item) => item.genre.name),
             }
         })
@@ -242,7 +245,7 @@ export class BookService {
         }
 
         // ubah release_date dalam database menjadi string
-        const formattedReleaseDate = book.release_date.toISOString().substring(0, 10);
+        const formattedReleaseDate = book.first_release_date.toISOString().substring(0, 10);
 
         return {
             title : book.title,
@@ -253,10 +256,11 @@ export class BookService {
             year : book.year,
             summary : book.summary,
             score : book.score,
+            rating : book.rating,
             total_pages : book.total_pages,
             from_country : book.from_country,
             type : book.type[0]?.type.name || 'Unknown',
-            release_date : formattedReleaseDate,
+            first_release_date : formattedReleaseDate,
             genres : book.genre.map((item) => item.genre.name),
         }
     }
@@ -313,8 +317,9 @@ export class BookService {
           cover_path: book.cover_path,
           summary: book.summary,
           score: book.score,
+          rating : book.rating,
           type: book.type[0]?.type.name || 'Unknown',
-          release_date: book.release_date.toISOString().substring(0, 10), // Mengubah release_date menjadi string
+          first_release_date: book.first_release_date.toISOString().substring(0, 10), // Mengubah release_date menjadi string
           genres: book.genre.map((g) => g.genre.name), // Mengambil nama genre
         };
       });
@@ -349,7 +354,7 @@ export class BookService {
             take : 20,
             orderBy : {
               book : {
-                release_date : 'desc'
+                first_release_date : 'desc'
               }
             },
             include : {
@@ -386,8 +391,9 @@ export class BookService {
                 cover_path : book.cover_path,
                 summary : book.summary,
                 score : book.score,
+                rating : book.rating,
                 type : book.type[0]?.type.name || 'Unknown',
-                release_date : book.release_date.toISOString().substring(0, 10), // Mengubah release_date menjadi string
+                first_release_date : book.first_release_date.toISOString().substring(0, 10), // Mengubah release_date menjadi string
                 genres : book.genre.map((g) => g.genre.name), // Mengambil nama genre
             }
         })
@@ -434,8 +440,9 @@ export class BookService {
                 cover_path : item.cover_path,
                 summary : item.summary,
                 score : item.score,
+                rating : item.rating,
                 type : item.type[0]?.type.name || 'Unknown',
-                release_date : item.release_date.toISOString().substring(0, 10), // Mengubah release_date menjadi string
+                first_release_date : item.first_release_date.toISOString().substring(0, 10), // Mengubah release_date menjadi string
                 genres : item.genre.map((g) => g.genre.name), // Mengambil nama genre
             }
         })

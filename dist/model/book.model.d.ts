@@ -5,9 +5,10 @@ export declare class BookResponse {
     author?: string;
     cover_path?: string;
     summary?: string;
+    rating?: number;
     score: number;
     type?: string;
-    release_date: string;
+    first_release_date: string;
     genres: Array<string>;
 }
 export declare class BookDetailResponse extends BookResponse {
@@ -25,11 +26,12 @@ export declare class AddNewBookRequest {
     cover_path: string;
     year: number;
     total_pages: number;
+    rating?: number;
     score: number;
     from_country: string;
     type: string;
     summary: string;
-    release_date: string;
+    first_release_date: string;
     genres: Array<string>;
 }
 export declare class GetPopularBooks {

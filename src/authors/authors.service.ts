@@ -95,8 +95,9 @@ export class AuthorsService {
                     cover_path : item.book.cover_path ? item.book.cover_path : null,
                     summary : item.book.summary ? item.book.summary : null,
                     score : item.book.score,
+                    rating : item.book.rating,
                     type : item.book.type[0]?.type.name,
-                    release_date : item.book.release_date.toISOString().substring(0, 10),
+                    first_release_date : item.book.first_release_date.toISOString().substring(0, 10),
                     genres : item.book.genre.map((genre) => genre.genre.name),
                     
                 }

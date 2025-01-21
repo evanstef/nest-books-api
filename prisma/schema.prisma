@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -25,14 +25,15 @@ model Books {
   title           String @db.VarChar(100)
   slug            String @db.VarChar(100) @unique
   
-  publisher       String @db.VarChar(100)
-  year            Int
-  total_pages     Int
+  publisher       String? @db.VarChar(100)
+  year            Int?
+  total_pages     Int?
+  rating          Float?
   cover_path      String?
   from_country    String?
-  release_date    DateTime
-  score           Int @default(0)
-  summary         String @db.Text
+  first_release_date    DateTime?
+  score           Int? @default(0)
+  summary         String? @db.Text
 
   type            TypeOnBooks[]
   genre           GenresOnBooks[] 
@@ -54,8 +55,8 @@ model Author {
 
 model Genre {
   id      Int @id @default(autoincrement())
-  name    String @db.VarChar(100) 
-  slug    String @db.VarChar(100) @unique
+  name    String? @db.VarChar(100) 
+  slug    String? @db.VarChar(100) @unique
 
   books   GenresOnBooks[]
 
