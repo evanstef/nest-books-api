@@ -3,7 +3,7 @@
 ## All Endpoint
 1. GET https://books-goodreads-api.vercel.app/api/book
 2. GET https://books-goodreads-api.vercel.app/api/book/popular
-3. GET https://books-goodreads-api.vercel.app/api/book/?genres={genre}
+3. GET https://books-goodreads-api.vercel.app/api/book?genres={slug:genre}
 4. GET https://books-goodreads-api.vercel.app/api/book/:id
 5. GET https://books-goodreads-api.vercel.app/api/book/type/:type
 6. GET https://books-goodreads-api.vercel.app/api/authors
@@ -99,9 +99,9 @@ Status : 500
 }
 ```
 
-## 3. GET https://books-goodreads-api.vercel.app/api/book/?genres={slug:genre}
+## 3. GET https://books-goodreads-api.vercel.app/api/book?genres={slug:genre}
 
-Endpoint : https://books-goodreads-api.vercel.app/api/book/?genres={genre} \
+Endpoint : https://books-goodreads-api.vercel.app/api/book?genres={slug:genre} \
 Method : GET \
 Size : 20 Books 
 
