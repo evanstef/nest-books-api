@@ -20,7 +20,7 @@ let AppController = class AppController {
                 books: {
                     recently: '/api/book',
                     popular: '/api/book/popular',
-                    genre: '/api/book/?genre={genre}',
+                    genre: '/api/book?genres={slug:genre}',
                     type: '/api/book/type/:type',
                     detail_book: '/api/book/:id'
                 },

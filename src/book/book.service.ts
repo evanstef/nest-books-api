@@ -39,21 +39,20 @@ export class BookService {
 
         // Simpan buku ke database
         const newBook = await this.prismaService.books.create({
-                  data: {
-                    title: addBookRequest.title,
-                    slug: addBookRequest.slug,
-                    publisher: addBookRequest.publisher,
-                    cover_path: addBookRequest.cover_path,
-                    year: addBookRequest.year,
-                    total_pages: addBookRequest.total_pages,
-                    score : addBookRequest.score,
-                    from_country: addBookRequest.from_country,
-                    summary: addBookRequest.summary,
-                    rating : addBookRequest.rating,
-                    first_release_date: releaseDate,
-                }
-        
-              });
+              data: {
+                title: addBookRequest.title,
+                slug: addBookRequest.slug,
+                publisher: addBookRequest.publisher,
+                cover_path: addBookRequest.cover_path,
+                year: addBookRequest.year,
+                total_pages: addBookRequest.total_pages,
+                score : addBookRequest.score,
+                from_country: addBookRequest.from_country,
+                summary: addBookRequest.summary,
+                rating : addBookRequest.rating,
+                first_release_date: releaseDate,
+            }
+        });
         
         let author : any;
         // pengecekan terlebih dahulu bila request.author memang ada value nya di front end karena ini sifatnya tidak wajib

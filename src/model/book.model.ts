@@ -1,6 +1,6 @@
 import { IsNumberString, IsOptional } from "class-validator"
 
-export class BookResponse {
+export class  BookResponse {
     id? : number
     title : string
     slug : string
